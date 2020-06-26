@@ -35,6 +35,7 @@
 
 \usepackage[T1]{fontenc}                % codifica dei font:
                                         % NOTA BENE! richiede una distribuzione *completa* di LaTeX
+\usepackage{lmodern}
 
 \usepackage[utf8]{inputenc}             % codifica di input; anche [latin1] va bene
                                         % NOTA BENE! va accordata con le preferenze dell'editor
@@ -100,10 +101,16 @@
                                         % 1. compilare una prima volta tesi.tex;
                                         % 2. eseguire: biber tesi
                                         % 3. compilare ancora tesi.tex.
-
+\usepackage{listings}
+\input{solidity-highlighting.tex}
 \input{tesi-config}                     % file con le impostazioni personali
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+\usepackage{makeidx}
+\makeindex
 
 \begin{document}
+
 %**************************************************************
 % Materiale iniziale
 %**************************************************************
@@ -121,11 +128,11 @@
 %**************************************************************
 \mainmatter
 \input{capitoli/capitolo-1}             % Introduzione
-\input{capitoli/capitolo-2}             % Processi
+%\input{capitoli/capitolo-2}             % Processi
 \input{capitoli/capitolo-3}             % Kick-Off
 \input{capitoli/capitolo-4}             % Concept Preview
 \input{capitoli/capitolo-5}             % Product Prototype
-\input{capitoli/capitolo-6}             % Product Design Freeze e SOP
+%\input{capitoli/capitolo-6}             % Product Design Freeze e SOP
 \input{capitoli/capitolo-7}             % Conclusioni
 \appendix                               
 \input{capitoli/capitolo-A}             % Appendice A

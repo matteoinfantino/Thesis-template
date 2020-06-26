@@ -10,29 +10,13 @@
 \intro{Breve introduzione al capitolo}\\
 
 \section{Casi d'uso}
-
-Per lo studio dei casi di utilizzo del prodotto sono stati creati dei diagrammi.
-I diagrammi dei casi d'uso (in inglese \emph{Use Case Diagram}) sono diagrammi di tipo \gls{uml} dedicati alla descrizione delle funzioni o servizi offerti da un sistema, così come sono percepiti e utilizzati dagli attori che interagiscono col sistema stesso.
-Essendo il progetto finalizzato alla creazione di un tool per l'automazione di un processo, le interazioni da parte dell'utilizzatore devono essere ovviamente ridotte allo stretto necessario. Per questo motivo i diagrammi d'uso risultano semplici e in numero ridotto.
-
-\begin{figure}[!h] 
-    \centering 
-    \includegraphics[width=0.9\columnwidth]{usecase/scenario-principale} 
-    \caption{Use Case - UC0: Scenario principale}
-\end{figure}
-
-\begin{usecase}{0}{Scenario principale}
-\usecaseactors{Sviluppatore applicativi}
-\usecasepre{Lo sviluppatore è entrato nel plug-in di simulazione all'interno dell'IDE}
-\usecasedesc{La finestra di simulazione mette a disposizione i comandi per configurare, registrare o eseguire un test}
-\usecasepost{Il sistema è pronto per permettere una nuova interazione}
-\label{uc:scenario-principale}
-\end{usecase}
-
+All'inizio dello stage sono stati discussi i casi d'uso del software da sviluppare con il tutor aziendale e gli altri stagisti partecipanti al progetto.
+L'azienda intende sviluppare un'applicazione mobile per gestire il tracciamento dei contatti e una web application per permettere al personale sanitario di segnalare una persona risultata positiva a un tampone, sempre dietro conferma dell'infetto. Il mio ruolo nel progetto è stato integrare uno smart contract con le due parti, rispettando i casi d'uso e i requisiti pensati.\\
+Tuttavia la blockchain non è visibile da chi utilizza l'applicazione e non richiede un'interazione con l'utente. Per questo motivo, per quanto riguarda il mio stage, non sono presenti casi d'uso, ma solamente i requisiti che lo smart contract deve soddisfare.
 \section{Tracciamento dei requisiti}
 
-Da un'attenta analisi dei requisiti e degli use case effettuata sul progetto è stata stilata la tabella che traccia i requisiti in rapporto agli use case.\\
-Sono stati individuati diversi tipi di requisiti e si è quindi fatto utilizzo di un codice identificativo per distinguerli.\\
+Da un'attenta analisi dei requisiti effettuata sul progetto è stata stilata la tabella che traccia i requisiti.\\
+Sono stati individuati diversi tipi di requisiti e per distinguerli si è fatto utilizzo di un codice identificativo.\\
 Il codice dei requisiti è così strutturato R(F/Q/V)(N/D/O) dove:
 \begin{enumerate}
 	\item[R =] requisito
@@ -47,38 +31,98 @@ Nelle tabelle \ref{tab:requisiti-funzionali}, \ref{tab:requisiti-qualitativi} e 
 
 \newpage
 
-\begin{table}%
-\caption{Tabella del tracciamento dei requisti funzionali}
-\label{tab:requisiti-funzionali}
-\begin{tabularx}{\textwidth}{lXl}
-\hline\hline
-\textbf{Requisito} & \textbf{Descrizione} & \textbf{Use Case}\\
-\hline
-RFN-1     & L'interfaccia permette di configurare il tipo di sonde del test & UC1 \\
-\hline
-\end{tabularx}
-\end{table}%
+\renewcommand{\arraystretch}{3}
 
-\begin{table}%
-\caption{Tabella del tracciamento dei requisiti qualitativi}
-\label{tab:requisiti-qualitativi}
-\begin{tabularx}{\textwidth}{lXl}
-\hline\hline
-\textbf{Requisito} & \textbf{Descrizione} & \textbf{Use Case}\\
-\hline
-RQD-1    & Le prestazioni del simulatore hardware deve garantire la giusta esecuzione dei test e non la generazione di falsi negativi & - \\
-\hline
-\end{tabularx}
-\end{table}%
+\begin{center}
+		\begin{longtable}{| c | p{30em} |}
+			\caption{Tabella del tracciamento dei requisiti funzionali}
+			\label{tab:requisiti-funzionali}\\
+			\hline
+			\textbf{Requisito} & \centering\textbf{Descrizione}\\
+			\endfirsthead
+			\hline
+			\textbf{Requisito} & \centering\textbf{Descrizione}\\
+			\endhead
+			\endfoot
+			
+			\hline
+			RFN-1     & L'address del proprietario del contract deve essere salvato\\
+			\hline
+			RFN-2     & Una persona deve essere inserita in catena con un id univoco \\
+			\hline
+			RFN-3     & Un inserimento deve essere rifiutato se è l'id della persona è già presente in catena \\
+			\hline
+			RFN-4     & Una persona infetta deve essere segnalata in blockchain \\
+			\hline
+			RFN-5     & Una segnalazione di infezione deve essere rifiutata se non è stata invocata da un medico autorizzato \\
+			\hline
+			RFN-6     & Una segnalazione di infezione deve essere rifiutata se viene inserito un id non presente in blockchain \\
+			\hline
+			RFN-7     & Quando viene rilevato un contatto tra due persone deve essere inserito in blockchain\\
+			\hline
+			RFN-8     & L'inserimento di un contatto viene rifiutato se viene effettuato da un indirizzo non corrispondente a quello della persona il cui contatto viene inserito \\
+			\hline
+			RFN-9     & L'inserimento di un contatto viene rifiutato se gli id non sono presenti in blockchain \\
+			\hline
+			RFN-10   & Deve essere possibile ottenere i contatti di una persona negli ultimi 14 giorni \\
+			\hline
+			RFN-11   & I contatti di una persona non devono essere forniti se vengono richiesti da qualcun altro\\
+			\hline
+			RFN-12   & Deve essere posssibile stabilire se una persona ha avuto contatti ritenuti a rischio \\
+			\hline
+			RFN-13   & Un rischio di contagio deve essere confermato anche dai contatti della persona infetta \\
+			\hline
+			RFN-14   & L'informazione sulla presenza di contatti a rischio deve essere effettuata solo dal proprietario dell'informazione \\
+			\hline
+			RFN-15   & Deve essere possibile calcolare la somma degli indici di contatto di una persona negli ultimi gionri\\
+			\hline
+			RFN-16   & La somma degli indici di contatto deve essere effettuata solo dal proprietario dell'informazione \\
+			\hline
+					
 
-\begin{table}%
-\caption{Tabella del tracciamento dei requisiti di vincolo}
-\label{tab:requisiti-vincolo}
-\begin{tabularx}{\textwidth}{lXl}
-\hline\hline
-\textbf{Requisito} & \textbf{Descrizione} & \textbf{Use Case}\\
-\hline
-RVO-1    & La libreria per l'esecuzione dei test automatici deve essere riutilizzabile & - \\
-\hline
-\end{tabularx}
-\end{table}%
+		\end{longtable}
+	\end{center}
+
+\begin{center}
+	\begin{longtable}{| c | p{30em} |}
+		\caption{Tabella del tracciamento dei requisiti qualitativi}
+		\label{tab:requisiti-qualitativi}\\
+		\hline
+		\textbf{Requisito} & \centering\textbf{Descrizione}\\
+		\endfirsthead
+		\hline
+		\textbf{Requisito} & \centering\textbf{Descrizione}\\
+		\endhead
+		\endfoot
+		
+		\hline
+		RQN-1    & Lo smart contract deve essere il più possibile ottimizzato per limitare i consumi di gas \\
+		\hline
+		RQN-2    & Il codice deve essere versionato e reso disponibile nel repository aziendale \\
+		\hline
+		RQN-3    & Deve essere fornito un documento tecnico \\
+		\hline
+	
+
+	\end{longtable}
+\end{center}
+
+\begin{center}
+	\begin{longtable}{| c | p{30em} |}
+		\caption{Tabella del tracciamento dei requisiti di vincolo}
+		\label{tab:requisiti-vincolo}\\
+		\hline
+		\textbf{Requisito} & \centering\textbf{Descrizione}\\
+		\endfirsthead
+		\hline
+		\textbf{Requisito} & \centering\textbf{Descrizione}\\
+		\endhead
+		\endfoot
+		
+		\hline
+		RVN-1    & Utilizzo del linguaggio solidity e piattaforma ethereum per lo sviluppo dello smart contract  \\
+		\hline
+		RVD-2    & Installazione dello smart contract in ambiente mobille (Android) \\
+		\hline
+	\end{longtable}
+\end{center}
